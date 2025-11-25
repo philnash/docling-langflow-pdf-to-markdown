@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import FileUpload from './components/FileUpload';
-import MarkdownDisplay from './components/MarkdownDisplay';
+import { useState } from "react";
+import FileUpload from "./components/FileUpload";
+import MarkdownDisplay from "./components/MarkdownDisplay";
 
 export default function Home() {
-  const [markdown, setMarkdown] = useState<string>('');
+  const [markdown, setMarkdown] = useState<string>("");
   const [isUploading, setIsUploading] = useState(false);
-  const [error, setError] = useState<string>('');
-  const [fileName, setFileName] = useState<string>('');
+  const [error, setError] = useState<string>("");
+  const [fileName, setFileName] = useState<string>("");
 
-  const handleUpload = async (file: File, mode: 'standard' | 'vlm') => {
+  const handleUpload = async (file: File, mode: "standard" | "vlm") => {
     setIsUploading(true);
-    setError('');
-    setMarkdown('');
+    setError("");
+    setMarkdown("");
     setFileName(file.name);
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('mode', mode);
+      formData.append("file", file);
+      formData.append("mode", mode);
 
-      const response = await fetch('/api/convert', {
-        method: 'POST',
+      const response = await fetch("/api/convert", {
+        method: "POST",
         body: formData,
       });
 
@@ -31,19 +31,21 @@ export default function Home() {
       if (data.success) {
         setMarkdown(data.markdown);
       } else {
-        setError(data.error || 'Conversion failed');
+        setError(data.error || "Conversion failed");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred"
+      );
     } finally {
       setIsUploading(false);
     }
   };
 
   const handleReset = () => {
-    setMarkdown('');
-    setError('');
-    setFileName('');
+    setMarkdown("");
+    setError("");
+    setFileName("");
   };
 
   return (

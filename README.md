@@ -18,6 +18,8 @@ A Next.js application that converts PDF files to Markdown format using [Langflow
 - npm
 - A Langflow instance with a PDF to Markdown conversion flow
 
+You can find the example flow in [the flow directory](./flow/pdf-to-markdown.json). Upload this JSON file to Langflow to recreate the flow.
+
 ## Installation
 
 1. Clone the repository:
