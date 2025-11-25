@@ -2,6 +2,8 @@
 
 A Next.js application that converts PDF files to Markdown format using [Langflow](https://langflow.org) and the [File component](https://docs.langflow.org/components-data#file) powered by [Docling](https://www.docling.ai/).
 
+You can download the Langflow flow from [flow/pdf-to-markdown.json](./flow/pdf-to-markdown.json).
+
 ## Features
 
 - 📄 **PDF Upload**: Drag-and-drop or click to browse interface
@@ -23,22 +25,26 @@ You can find the example flow in [the flow directory](./flow/pdf-to-markdown.jso
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd docling-pdf-to-markdown
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Configure environment variables:
+
 ```bash
 cp .env.example .env.local
 ```
 
 4. Edit `.env.local` and add your Langflow credentials:
+
 ```env
 LANGFLOW_BASE_URL=https://your-langflow-instance.com
 LANGFLOW_API_TOKEN=your-api-token-here
@@ -51,6 +57,7 @@ LANGFLOW_FILE_COMPONENT_NAME=your-file-component-id-here
 ### Development
 
 Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -86,12 +93,12 @@ docling-pdf-to-markdown/
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `LANGFLOW_BASE_URL` | Base URL of your Langflow instance | Yes |
-| `LANGFLOW_API_TOKEN` | API authentication token | Yes |
-| `LANGFLOW_FLOW_ID` | Flow ID for PDF conversion | Yes |
-| `LANGFLOW_FILE_COMPONENT_NAME` | Name of File component in flow | Yes |
+| Variable                       | Description                        | Required |
+| ------------------------------ | ---------------------------------- | -------- |
+| `LANGFLOW_BASE_URL`            | Base URL of your Langflow instance | Yes      |
+| `LANGFLOW_API_TOKEN`           | API authentication token           | Yes      |
+| `LANGFLOW_FLOW_ID`             | Flow ID for PDF conversion         | Yes      |
+| `LANGFLOW_FILE_COMPONENT_NAME` | Name of File component in flow     | Yes      |
 
 ## API Endpoints
 
@@ -100,11 +107,13 @@ docling-pdf-to-markdown/
 Converts a PDF file to Markdown.
 
 **Request:**
+
 - Method: POST
 - Content-Type: multipart/form-data
 - Body: `{ file: PDF file, mode: "standard" | "vlm" }`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -113,6 +122,7 @@ Converts a PDF file to Markdown.
 ```
 
 **Error Response:**
+
 ```json
 {
   "success": false,
@@ -137,6 +147,7 @@ Converts a PDF file to Markdown.
 ## Error Handling
 
 The application handles various error scenarios:
+
 - Invalid file type
 - File size exceeds limit
 - Network errors
